@@ -1,7 +1,7 @@
 ExcelAddinInstaller
 ===================
 
-[InnoSetup][] script to install and activate Excel addins.
+[InnoSetup][] script to install and activate Excel&reg; addins.
 
 Features
 --------
@@ -133,6 +133,13 @@ Panel, and by opening an Explorer window on the profile folder:
 - With Windows 7: `Start` > `"%appdata%\Microsoft\Addins"`
 
 
+Further information
+-------------------
+
+For background information, see
+<http://xltb.localhost/blog/2013/12/using-innosetup-to-install-excel-addins>.
+
+
 License
 -------
 
@@ -149,6 +156,10 @@ Published under the [GPL v3 license](LICENSE).
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
 	GNU General Public License for more details.
+
+Microsoft®, Windows®, Office, and Excel® are either registered
+trademarks or trademarks of Microsoft Corporation in the United States
+and/or other countries.
 
 
 [InnoSetup]: http://www.jrsoftware.org/isinfo.php
