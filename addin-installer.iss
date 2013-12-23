@@ -56,13 +56,10 @@ Name: Deutsch; MessagesFile: compiler:Languages\German.isl;
 
 [CustomMessages]
 #include "inc/messages.iss"
-#ifexist "messages.iss"
-  #include "messages.iss"
-#endif
 
 ; Define any additional messages in the custom messages.iss file.
 #ifexist "messages.iss"
   #include "messages.iss"
 #endif
 
-; vim: set ft=pascal ts=2 sts=2 sw=2 noet tw=60 fo+=lj cms=;%s 
+; vim: set ts=2 sts=2 sw=2 noet tw=60 fo+=lj cms=;%s 
