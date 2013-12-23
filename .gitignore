@@ -2,3 +2,5 @@
 *.swp
 *.bak
 $*
+*.iss
+!addin-installer.iss
