@@ -11,7 +11,7 @@ Features
 - Automatically registers and activates the addin.
 - Checks if Excel is running and can automatically shut it down before
   proceeding with the installation process.
-- Can be used with an /UPDATE switch to silently shut down and restart Excel
+- Can be used with an `/UPDATE` switch to silently shut down and restart Excel
   after the installation.
 - Modular structure makes it easy to keep custom configuration separate from
   the core functionality.
@@ -69,6 +69,11 @@ Edit the new file `config.iss` and insert the appropriate descriptive
 information. By default, the `.XLAM`/`.XLA` files are expected in a
 `source\` folder, but this can be adjusted in the `config.iss` file
 too.
+
+__Important:__ When you first edit this file, you *must* create a
+global unique ID (GUID) for your addin. You will easily identify the
+line in the default configuration file where this information is
+needed.  InnoSetup has a "Generate GUID" command in the "Tools" menu.
 
 When you are done editing, save the file, then right-click on the
 `addin-installer.iss` file and choose "Compile" from the context menu
