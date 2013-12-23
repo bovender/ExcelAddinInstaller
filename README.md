@@ -25,35 +25,119 @@ Planned features
 - Ability to install binary addins (e.g., .NET/VSTO addins).
 
 
+Obtaining
+---------
+
+- If you have [Git for Windows][] installed on your system, you can simply
+  clone the repository: <https://github.com/bovender/ExcelAddinInstaller.git>
+- If you do not have Git, just download the latest [ZIP file][] from
+  Github. The file contains a directory "ExcelAddinInstaller-master",
+  so you can simply unzip it into the downloads folder without
+  polluting your files.
+
+
 Usage
 -----
 
-You can either download a ZIP file containing all files, or clone the Git
-repository.
+The scipt is divided into several files. The master file,
+`addin-installer.iss`, includes several non-configurable files from
+the `inc\` subfolder as well as customized configuration files from
+the main folder (see below).
 
-Copy or rename the distributed configuration files:
-- `config.dist.iss` &rarr; `config.iss`
-- `files.dist.iss` &rarr; `files.iss`
+To generate an installer, use InnoSetup to compile the master file
+`addin-installer.iss`. Never make changes to this master file; use 
+custom configuration files instead.
 
-Adjust the configuration by editing the configuration files. Never edit the
-files containing "dist" in their file name directly, as they will be
-overwritten whenever you update the ExcelAddinInstaller.
+To protect you from accidentally overwriting your personalized
+configuration with an update from the Git repository, the distributed
+configuration files (to be recognized by the ".dist" contained in the
+filename) need to be copied from the `config-dist` folder to the
+parent folder. Then, rename the files to remove the ".dist" part from
+them, and edit these files.
 
-To generate a setup file, double-click the file `addin-installer.iss` and
-compile it using InnoSetup.
+Depending on how much you want to customize the script, you need to
+copy and rename just one or several files.
+
+
+### Most basic scenario ###
+
+The most basic scenario assumes that you have an `.XLAM` and/or an
+`.XLA` file, but no other files that belong to the installation.
+
+Copy and rename the distributed configuration file:
+- `config-dist\config.dist.iss` &rarr; `config.iss`
+
+Edit the new file `config.iss` and insert the appropriate descriptive
+information. By default, the addin files are expected in a `source\`
+folder, but this can be adjusted in the `config.iss` file too.
+
+When you are done editing, save the file, then right-click on the
+`addin-installer.iss` file and choose "Compile" from the context menu
+(if you do not see a "Compile" command in the context menu, check that
+you have actually installed [InnoSetup]).
+
+Alternatively, double-click on `addin-installer.iss`, which will start
+InnoSetup with the file loaded.
+
+The installer will be written to the `deploy\` folder by default. This
+can be changed in the `config.iss` file.
+
+
+### Adding more files ###
+
+If you need more files than just an `.XLAM` and/or `.XLA` addin file,
+you need to copy the `files.dist.iss` configuration file from the
+`config-dist` folder to the main folder, and rename it to `files.iss`.
+
+Add the file definitions to this file. Make sure to use the `Dest`
+directive as described in this configuration file (i.e., it must
+contain a call to the `GetDestDir` function).
+
+
+### Advanced configuration ###
+
+If you need more advanced configuration, copy and rename one or
+several of the following configuration files from the `config-dist`
+folder to the main folder:
+- `lanuages.dist.iss` and `messages.dist.iss` to add more languages.
+- `tasks.dist.iss` to define custom tasks.
+
+Always remember to remove the `.dist` from the file names after
+copying them to the main folder.
 
 
 Demo
 ----
 
-The preconfigured configuration files install simple (empty) Excel addins.
-Successful installation can be verified using Excel's addin manager, and by
-looking at the Add/Remove Software applet in the Windows Control Panel.
+The ExcelAddinInstaller comes with a sample configuration and two
+(empty) Excel addin files, one for Excel 2000-2003 (`.XLA`) and one
+for Excel 2007-2013 (`.XLAM`). To test the demo, copy the file
+`demo\config.demo.iss` to the main folder and rename it to
+`config.iss`. Then, use InnoSetup to compile the master file
+`addin-installer.iss`.
+
+The demo script will generate a setup file `demo_1.0.exe` in the
+`deploy\` subfolder. When you execute this file, the appropriate addin
+file (depending on what version of Excel you have installed) will be
+installed to your user profile folder.
+
+Successful installation can be verified using Excel's addin manager,
+by looking at the Add/Remove Software applet in the Windows Control
+Panel, and by opening an Explorer window on the profile folder:
+
+- With Windows XP: `Start` > `Run...` > "%appdata%\Microsoft\Addins"
+- With Windows 7: `Start` > "%appdata%\Microsoft\Addins"
+
+
+License
+-------
 
 Published under the [GPL v3 license](LICENSE).
 
 
 [InnoSetup]: http://www.jrsoftware.org/isinfo.php
 [Daniel's XL Toolbox]: http://xltoolbox.sf.net
+[ZIP file]: https://github.com/bovender/ExcelAddinInstaller/archive/master.zip
+[Git for Windows]: http://git-scm.com/downloads
 
-vim: set tw=70 ts=4 
+<!-- vim: set tw=70 ts=4 :-->
