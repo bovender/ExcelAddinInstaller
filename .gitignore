@@ -1,6 +1,7 @@
+deploy/
+!addin-installer.iss
+$*
 *~
 *.swp
 *.bak
-$*
 *.iss
-!addin-installer.iss
