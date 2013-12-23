@@ -137,7 +137,7 @@ Further information
 -------------------
 
 For background information, see
-<http://xltb.localhost/blog/2013/12/using-innosetup-to-install-excel-addins>.
+<http://xltoolbox.sf.net/blog/2013/12/using-innosetup-to-install-excel-addins>.
 
 
 License
