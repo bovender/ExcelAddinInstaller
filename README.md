@@ -140,6 +140,12 @@ For background information, see
 <http://xltoolbox.sf.net/blog/2013/12/using-innosetup-to-install-excel-addins>.
 
 
+Credits
+-------
+
+Victor McClean tested the script and contributed bug fixes.
+
+
 License
 -------
 

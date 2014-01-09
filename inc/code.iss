@@ -138,6 +138,11 @@ begin
 	if b then result := 'TRUE' else result := 'FALSE'
 end;
 
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+	if CurStep = ssDone then OkToCopyLog := True;
+end;
+
 
 {
 	This function is called by InnoSetup.
@@ -225,11 +230,11 @@ begin
 	}
 	if RegisterWithFullPath then
 	begin
-		AddinName := AddQuotes(CurrentFileName);
+		AddinName := '"' + CurrentFileName + '"';
 	end
 	else
 	begin
-		AddinName := AddQuotes(ExtractFileName(CurrentFileName));
+		AddinName := '"' + ExtractFileName(CurrentFileName) + '"';
 	end;
 
 	{
@@ -799,10 +804,12 @@ begin
 	{
 		Copy the log file to the installation
 	}
-	FileCopy(
-		ExpandConstant('{log}'),
-		ExpandConstant('{app}\')+'{#product}\{#logfile}',
-		false);
+	if OkToCopyLog then
+		FileCopy(
+			ExpandConstant('{log}'),
+			ExpandConstant('{app}\')+'{#product}\{#logfile}',
+			false);
+	RestartReplace(ExpandConstant('{log}'), '');
 end;
 
 { vim: set ft=pascal ts=2 sts=2 sw=2 noet tw=60 fo+=lj  :}
