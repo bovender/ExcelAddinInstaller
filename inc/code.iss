@@ -807,7 +807,7 @@ begin
 	if OkToCopyLog then
 		FileCopy(
 			ExpandConstant('{log}'),
-			ExpandConstant('{app}\')+'{#product}\{#logfile}',
+			AddBackslash(GetDestDir(''))+'{#product}\{#logfile}',
 			false);
 	RestartReplace(ExpandConstant('{log}'), '');
 end;
