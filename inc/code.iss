@@ -809,7 +809,14 @@ begin
 			ExpandConstant('{log}'),
 			AddBackslash(GetDestDir(''))+'{#product}\{#logfile}',
 			false);
-	RestartReplace(ExpandConstant('{log}'), '');
+	{
+		The following line requires administrator privileges
+		during setup. It is therefore commented out until a way
+		is found to delete the log file after savely without
+		administrator privileges. When uncommenting, make sure
+		to replace the '>>' with closing curly braces.
+	}
+	{ RestartReplace(ExpandConstant('{log>>'), ''); }
 end;
 
 { vim: set ft=pascal ts=2 sts=2 sw=2 noet tw=60 fo+=lj  :}
