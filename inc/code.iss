@@ -43,6 +43,7 @@ var
 	ExcelNotInstalled: boolean;
 	ExcelExePath: string;
 	GlobalUninstKey: string; 
+	OkToCopyLog: boolean;
 
 	{
 		The destination folder is determined at run-time
