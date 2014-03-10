@@ -42,7 +42,6 @@ const
 var
 	ExcelNotInstalled: boolean;
 	ExcelExePath: string;
-	GlobalUninstKey: string; 
 	OkToCopyLog: boolean;
 
 	{
@@ -671,7 +670,6 @@ var
 	hWnd: LongInt;
 	IsUpdate: boolean;
 	bCancel: boolean;
-	sWord: string;
 	CallName: string;
 begin
 	CallName:='InitializeSetup(): ';
