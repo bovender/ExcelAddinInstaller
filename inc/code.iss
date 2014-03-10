@@ -71,6 +71,7 @@ var
 function GetDestDir(dummyparameter: string): string;
 var
 	Addins: string;
+  s: string;
 	CallName: string;
 	i: integer;
 begin
@@ -85,48 +86,68 @@ begin
 		DestDir := ExpandConstant('{userappdata}\Microsoft\');
 
 		{
-			Loop through possible version numbers of Excel,
-			beginning with the highest version number, and try to
-			get the localized Addins folder name from the
-			registry.	Note that this does not take into account
-			that some users might have several installations of
-			Office in different localizations on their system,
-			which might mess up our algorithm and lead to the
-			addin files being copied into the wrong folder.
-			However, this is really a special case which we choose
-			to ignore at this point.
+			Loop through possible version numbers of Excel and find out if
+			any installed version uses an addin folder other than "addins".
+			This can be the case with international versions (other than English).
+			If an addin folder name that is different from "Addins" is found,
+			the addin will be installed into a dedicated folder.
 		}
-		for i := 20 downto 8 do
-		begin 
-			if RegQueryStringValue(HKEY_CURRENT_USER,
-				'Software\Microsoft\Office\'+IntToStr(i)+'.0\Common\General',
-				'AddIns', Addins) then
+    for i := 8 to 32 do
+    begin
+      s := '';
+      if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Microsoft\Office\'
+        +IntToStr(i)+'.0\Common\General', 'AddIns', s) then
 			begin
-				log(CallName+'Found Addins key for version '+IntToStr(i)+
-				': "'+addins+'"');
-				RegisterWithFullPath := false;
-				break;
+        if Length(Addins) > 0 then
+        begin
+					{
+						If the Addins variable has been set already and we encounter
+          	a different name, reset everything in order to use a dedicated
+          	name further on.
+					}
+          if s <> Addins then
+          begin
+						{
+							Set the Addins variable to a zero-length string to force
+							using a dedicated dir name later.
+						}
+  				  log(CallName+'Found alternative Addins key for version '+IntToStr(i)+': "'+s+'"');
+            Addins := '';
+						{
+							Once a single dir name that is different from "Addins" was
+							found, we can exit the loop.
+						}
+    				break;
+          end 
+        end
+        else
+        begin
+					{
+						Addins variable has zero length: Set it to the current value of s
+					}
+				  log(CallName+'Found first Addins key: version '+IntToStr(i)+', "'+s+'"');
+          Addins := s;
+        end
 			end
-		end;
-
+    end;
+    
 		{
 			Check if the Addins variable contains something now; if not, use
-			a default value ('Addins')
+			a default value ('XL Toolbox')
 		}
-		if Addins = '' then
+    if Addins = '' then
 		begin
-			Addins := 'AddIns';
+      DestDir := ExpandConstant('{userappdata}\Microsoft\Addins\');
 			RegisterWithFullPath := true;
-			log(CallName+
-				'Did not find addins key in registry, using default: "'+
-				Addins+'"');	
+			log(CallName+'Using dedicated folder: "'+DestDir+'"');  
+		end
+		else
+		begin
+      DestDir := ExpandConstant('{userappdata}\Microsoft\' + Addins);
+			RegisterWithFullPath := false;
+			log(CallName+'Installing to default Addins folder: ' + DestDir);  
 		end;
-
-		{
-			Build the final path
-		}
-		DestDir := DestDir + Addins;
-	end;
+  end;
 	result := DestDir; 
 end;
 
