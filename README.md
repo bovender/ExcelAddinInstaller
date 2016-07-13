@@ -3,6 +3,9 @@ ExcelAddinInstaller
 
 [InnoSetup][] script to install and activate Excel&reg; addins.
 
+> Note: You may also be interested in my [VstoAddinInstaller][] which 
+> is a much improved version.
+
 Features
 --------
 
@@ -172,5 +175,6 @@ and/or other countries.
 [Daniel's XL Toolbox]: http://xltoolbox.sf.net
 [ZIP file]: https://github.com/bovender/ExcelAddinInstaller/archive/master.zip
 [Git for Windows]: http://git-scm.com/downloads
+[VstoAddinInstaller]: https://github.com/bovender/VstoAddinInstaller
 
 <!-- vim: set tw=70 ts=4 :-->
