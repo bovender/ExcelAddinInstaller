@@ -22,7 +22,7 @@ const
 		user will be informed about this.
 	}
 	MinExcelVersion = 9;   { Excel 2000 }
-	MaxExcelVersion = 15;  { Excel 2013 }
+	MaxExcelVersion = 16;  { Excel 2016 }
 
 	{
 		Maximum number of addins to check. This is a safety
