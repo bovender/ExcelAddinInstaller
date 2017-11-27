@@ -147,6 +147,8 @@ Credits
 -------
 
 Victor McClean tested the script and contributed bug fixes.
+Jorrit Wronski (@jowr) contributed Danish language messages.
+@cardsurf fixed a bug.
 
 
 License
