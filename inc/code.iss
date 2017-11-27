@@ -251,7 +251,7 @@ begin
 	}
 	if RegisterWithFullPath then
 	begin
-		AddinName := '"' + CurrentFileName + '"';
+		AddinName := '"' + ExpandConstant('{userappdata}\Microsoft\Addins\') + ExtractFileName(CurrentFileName) + '"';
 	end
 	else
 	begin
