@@ -2,7 +2,7 @@
 ; InnoSetup script to install and activate native Excel addins.
 ; Originally developed for Daniel's XL Toolbox (xltoolbox.sf.net).
 ; Requires the InnoSetup Preprocessor (ISPP).
-; Copyright (C) 2013  Daniel Kraus <http://github.com/bovender>
+; Copyright (C) 2013-2018  Daniel Kraus <http://github.com/bovender>
 ; 
 ; This program is free software: you can redistribute it and/or modify
 ; it under the terms of the GNU General Public License as published by

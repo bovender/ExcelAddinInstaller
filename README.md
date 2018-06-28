@@ -154,7 +154,7 @@ License
 
 Published under the [GPL v3 license](LICENSE).
 
-	Copyright (C) 2013  Daniel Kraus <http://github.com/bovender>
+	Copyright (C) 2013-2018  Daniel Kraus <http://github.com/bovender>
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
