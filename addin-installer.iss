@@ -20,6 +20,8 @@
 [Setup]
 #ifexist "config.iss"        
   #include "config.iss"
+#else
+  #error config.iss not found. Please copy config-dist/config.dist.iss to config.iss and edit it with your information.
 #endif
 #include "inc/setup.iss"
 
